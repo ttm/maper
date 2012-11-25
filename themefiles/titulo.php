@@ -87,19 +87,19 @@ function registraMapa(){
     window.location="./registraMapa.php?lat=" + lat + "&lng=" + lng + "&zoom="+zoom;
 }
 </script>
-<body onload="initialize()" style="overflow:hidden">
+<body onload="initialize()">
   <div id="map_canvas" style="width:100%; height:100%; z-index:1; position:relative; float:left"></div>
     <form method="post" action="<?=$_SERVER['PHP_SELF'];?>">
-        <input id="continuar" value="Iniciar Mapa" name="iniciar" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7" type="submit" />
+        <input id="continuar" value="Acrescentar conteúdo" name="conteudo" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7" type="submit" />
     </form>
   <nav>
-  <li class="active">
+  <li>
   <a href="#">0.</a>
   </li>
   <li>
   <a href="#">1.O mapa</a>
   </li>
-  <li>
+  <li class="active">
   <a href="#">2.</a>
   </li>
   <li>
@@ -118,19 +118,6 @@ function registraMapa(){
   <a href="#">7.Exportar</a>
 </nav>
 
-<div style="height:80%;width:20%;left:100px;top:100px;background:white;z-index:50;position:absolute">
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-</div>
 
 </body>
 </html>

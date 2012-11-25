@@ -40,6 +40,12 @@ function my_theme_redirect() {
     if($_POST['apresentacao']){
     $templatefilename = "apresentacao.php";
     }
+    if($_POST['iniciar']){
+    $templatefilename = "oMapa.php";
+    }
+    if($_POST['titulo']){
+    $templatefilename = "titulo.php";
+    }
 
     $return_template = $plugindir . '/themefiles/' . $templatefilename;
     do_theme_redirect($return_template);
