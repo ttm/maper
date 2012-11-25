@@ -32,23 +32,34 @@ add_action("template_redirect", 'my_theme_redirect');
 
 function my_theme_redirect() {
     global $wp;
+    $pass=1;
     $plugindir = dirname( __FILE__ );
     $templatefilename = "inicial.php";
-    if($_SESSION['etapa']=='apr'){
-    $templatefilename = "apresentacao.php";
-    }
     if($_POST['apresentacao']){
     $templatefilename = "apresentacao.php";
     }
-    if($_POST['iniciar']){
+    elseif($_POST['iniciar']){
     $templatefilename = "oMapa.php";
     }
-    if($_POST['titulo']){
-    $templatefilename = "titulo.php";
+    elseif($_POST['titulo']){
+        $templatefilename = "titulo.php";
+        // Criar mapa
+        $inCentro=$_POST['inCentro'];
+        $lat=$_POST['inLat'];
+        $lng=$_POST['inLng'];
+        $_SESSION['MdVauto']=1;
+        $inZoom=$_POST['inZoom'];
+        header("Location: " . admin_url("admin.php?page=mapasdevista_maps&action=new&Lat=$lat&Lng=$lng&Zoom=$inZoom"));
+    }
+    elseif($_GET['page_id']==$_SESSION['PageNumb']-1){
+        $pass=0;
     }
 
-    $return_template = $plugindir . '/themefiles/' . $templatefilename;
-    do_theme_redirect($return_template);
+    if($pass){
+        $return_template = $plugindir . '/themefiles/' . $templatefilename;
+        do_theme_redirect($return_template);
+    }
+
 }
 
 function do_theme_redirect($url) {

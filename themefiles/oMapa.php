@@ -76,7 +76,56 @@ function initialize() {
   }
   map = new google.maps.Map(document.getElementById("map_canvas"),
       myOptions);
+  refresh();
+
+google.maps.event.addListener(map, 'click', function(event) {
+refresh();
+        });
+
+google.maps.event.addListener(map, 'center_changed', function(event) {
+refresh();
+        });
+
+google.maps.event.addListener(map, 'zoom_changed', function(event) {
+refresh();
+        });
+
+
+
+function placeMarker(location) {
+      var marker = new google.maps.Marker({
+                position: location,
+                      map: map
+                        });
 }
+
+
+
+}
+
+function refresh(){
+
+    center=map.getCenter();
+    lat=document.getElementById("lat");
+    lng=document.getElementById("lng");
+    lat.innerHTML=center.$a;
+    lng.innerHTML=center.ab;
+
+    zoom=map.getZoom();
+    zoom_=document.getElementById("zoom");
+    zoom_.innerHTML=zoom;
+
+    front=map.getBounds();
+    front_=document.getElementById("fronteiras");
+    front_.innerHTML=front;
+
+    oFormObject = document.forms['mapForm'];
+    oFormObject.elements["inLat"].value =center.$a;
+    oFormObject.elements["inLng"].value =center.ab;
+    oFormObject.elements["inZoom"].value =zoom;
+}
+
+
 
 function registraMapa(){
     center=map.getCenter();
@@ -89,7 +138,11 @@ function registraMapa(){
 </script>
 <body onload="initialize()">
   <div id="map_canvas" style="width:100%; height:100%; z-index:1; position:relative; float:left"></div>
-    <form method="post" action="<?=$_SERVER['PHP_SELF'];?>">
+    <form id="mapForm" method="post" action="<?=$_SERVER['PHP_SELF'];?>">
+
+        <input id="inLat" modifiable="0" name="inLat" style="position:absolute;left:50%;bottom:34%;z-index:20;width:500px;opacity:0.7">
+        <input id="inLng" modifiable="0" name="inLng" style="position:absolute;left:50%;bottom:30%;z-index:20;width:500px;opacity:0.7">
+        <input id="inZoom" modifiable="0" name="inZoom" style="position:absolute;left:50%;bottom:35%;z-index:20;width:500px;opacity:0.7">
         <input id="continuar" value="Colocar título" name="titulo" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7" type="submit" />
     </form>
   <nav>
@@ -118,6 +171,26 @@ function registraMapa(){
   <a href="#">7.Exportar</a>
 </nav>
 
+<div style="height:20%;width:70%;left:40px;top:80px;z-index:80;position:absolute;background:white;">
+Texto de apresentação.
+Texto de apresentação.
+Texto de apresentação.
+Texto de apresentação.
+Texto de apresentação.
+</div>
+
+<div style="left:60px;top:40%;z-index:60;background:white;position:absolute;">
+Centro (lat,log)=<span id='lat'></span>, <span id='lng'></span><br />
+Zoom=<span id='zoom'></span><br />
+Fronteiras=<span id='fronteiras'></span><br />
+</div>
+
+<div style="bottom:10%;left:5%;width:40%;background:gray;height:20%;z-index:50;position:absolute;"><p style="top:40%;left:30%;position:relative;">  MAPA LIMPO<br /></p>
+( clica e somem os campos todos e botoes)
+</div>
+
 
 </body>
+
+
 </html>
