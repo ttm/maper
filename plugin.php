@@ -35,6 +35,10 @@ function my_theme_redirect() {
     $pass=1;
     $plugindir = dirname( __FILE__ );
     $templatefilename = "inicial.php";
+    error_log(get_current_user_id( ),3,"MERRORS.txt");
+    update_post_meta(1, 'AA', "asdasdasdsadas");
+    //update_post_meta($_POST['page_id'], '_mapasdevista', $_POST['map']);
+
     if($_POST['apresentacao']){
     $templatefilename = "apresentacao.php";
     }
