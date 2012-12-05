@@ -11,6 +11,8 @@
 //include('functions.php');                                             
 
 //register_activation_hook(__FILE__, 'mapasdevista_activate');
+//include('functions.php');
+
 
 add_action('init', 'init_sessions', 1);                                
 function init_sessions() {                                             
@@ -46,14 +48,15 @@ function my_theme_redirect() {
     $templatefilename = "oMapa.php";
     }
     elseif($_POST['titulo']){
-        $templatefilename = "titulo.php";
+        $templatefilename = "registraMapa.php";
+        // page=mapasdevista_maps&action=new&Lat=$lat&Lng=$lng&Zoom=$inZoom";
         // Criar mapa
-        $inCentro=$_POST['inCentro'];
-        $lat=$_POST['inLat'];
-        $lng=$_POST['inLng'];
+        $_SESSION['inCentro']=$_POST['inCentro'];
+        $_SESSION['Lat']=$_POST['inLat'];
+        $_SESSION['Lng']=$_POST['inLng'];
         $_SESSION['MdVauto']=1;
-        $inZoom=$_POST['inZoom'];
-        header("Location: " . admin_url("admin.php?page=mapasdevista_maps&action=new&Lat=$lat&Lng=$lng&Zoom=$inZoom"));
+        $_SESSION['Zoom']=$_POST['inZoom'];
+//        header("Location: " . admin_url("admin.php?page=mapasdevista_maps&action=new&Lat=$lat&Lng=$lng&Zoom=$inZoom"));
     }
     elseif($_GET['page_id']==$_SESSION['PageNumb']-1){
         $pass=0;
