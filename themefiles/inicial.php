@@ -77,6 +77,14 @@ function initialize() {
 </script>
 </head>
 <body onload="initialize()" style="overflow:hidden">
+
+<? 
+wp_enqueue_script('jquery');
+jfb_output_facebook_callback();
+jfb_output_facebook_init();
+jfb_output_facebook_btn();
+ ?>
+
 <div id="logo" style="position:absolute;margin:50px 0 0 50px;height:200px;width:200px; z-index:50;background: white;opacity:.83">
 <p style="position:relative; top:30%;left:30%">LOGO</p></div>
   <div id="map_canvas" style="width:100%; height:100%; z-index:1; position:relative; float:left"></div>
