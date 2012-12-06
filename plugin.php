@@ -32,10 +32,9 @@ function my_theme_redirect() {
     {
         update_post_meta($_POST['page_id'], '_mapasdevista', $_POST['map']);
         update_post_meta($_POST['page_id'], '_mapasdeusuario', get_current_user_id());
+//        header('?page_id='.$_POST['page_id']);
+        $pass=0;
     }
-
-    update_post_meta($_POST['map']['zoom'], 'AA', "asdasdasdsadas");
-    //update_post_meta($_POST['page_id'], '_mapasdevista', $_POST['map']);
 
     if($_POST['apresentacao']){
     $templatefilename = "apresentacao.php";
@@ -45,16 +44,13 @@ function my_theme_redirect() {
     }
     elseif($_POST['titulo']){
         $templatefilename = "registraMapa.php";
-        // page=mapasdevista_maps&action=new&Lat=$lat&Lng=$lng&Zoom=$inZoom";
-        // Criar mapa
         $_SESSION['inCentro']=$_POST['inCentro'];
         $_SESSION['Lat']=$_POST['inLat'];
         $_SESSION['Lng']=$_POST['inLng'];
         $_SESSION['MdVauto']=1;
         $_SESSION['Zoom']=$_POST['inZoom'];
-//        header("Location: " . admin_url("admin.php?page=mapasdevista_maps&action=new&Lat=$lat&Lng=$lng&Zoom=$inZoom"));
     }
-    elseif($_GET['page_id']==$_SESSION['PageNumb']-1){
+    elseif($_GET['page_id']){
         $pass=0;
     }
 

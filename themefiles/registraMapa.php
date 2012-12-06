@@ -482,21 +482,9 @@ var point11 = new mxn.LatLonPoint(
 if($_SESSION['MdVauto']){
     ?>
     <script>
-    //alert("CC");
- //      window.setTimeout("document.getElementById('submitBttn').click()",1000);
+       window.setTimeout("document.getElementById('submitBttn').click()",1000);
+       document.getElementById("p<?=$_SESSION['PageNumb']-1;?>").click();
     </script>
-<?php } ?>
-
-
-<?php
-if($_SESSION['Zoom']){
-?>
-<script>
-//document.getElementById('p23').click();
-//alert("<?=$_SESSION['PageNumb'];?>");
-document.getElementById("p<?=$_SESSION['PageNumb']-1;?>").click();
-
-</script>
 <?php } ?>
 
         <?php endif; ?>
