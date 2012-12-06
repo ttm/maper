@@ -1,4 +1,5 @@
 <?php
+wp_enqueue_script( 'jquery' );
 function load_jquery2() {
 
     // only use this method is we're not in wp-admin
@@ -76,7 +77,7 @@ function mapasdevista_maps_pageB() {
         <h2><?php _e('Maps', 'mapasdevista'); ?></h2>
         
         
-        <?php if (isset($_SESSION['lat'])) : ?>
+        <?php if (isset($_SESSION['Lat'])) : ?>
 
             <?php
 
@@ -244,7 +245,13 @@ $_SESSION['PageNumb']=$page_id;
                 <li><input type="checkbox" id="mpv_control_map_type"<?php if(isset($map['control']['map_type'])){ echo ' checked';}?> name="map[control][map_type]" /> <label for="mpv_control_map_type"><?php _e("Map type");?></label></li>
             </ul>            
 
-<? echo "BB4"; ?>
+<? echo "BB4";
+
+wp_enqueue_script('jquery');
+wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js', false, '1.5.2');
+
+
+ ?>
             <script type="text/javascript">
             (function($) {
                 function fill_fields(lat, lng, zoom) {
@@ -404,9 +411,32 @@ var point11 = new mxn.LatLonPoint(
  
                 
                 
-            })(jQuery);
+            });
+    foo=document.getElementById("mpv_api_googlev3");
+    foo.click();
+    foo=document.getElementById("mpv_lat");
+    foo.value=parseFloat(<? echo $_SESSION['Lat']; ?>);
+    foo=document.getElementById("mpv_lng");
+    foo.value=parseFloat(<? echo $_SESSION['Lng']; ?>);
+    foo=document.getElementById("mpv_zoom");
+    foo.value=parseFloat(<? echo $_SESSION['Zoom']; ?>);
+//    alert("AA");
+
+var point11 = new mxn.LatLonPoint(
+                                        parseFloat(<? echo $_SESSION['Lat']; ?>),
+                                        parseFloat(<? echo $_SESSION['Lng']; ?>)
+                                    );
+                        mapstraction.setCenterAndZoom(point11, parseInt(<? echo $_SESSION['Zoom']; ?>));
+
+
+
+
+
             </script>
             <? echo "CC";?>   
+
+
+
 
             <h3><?php _e('Logical operator', 'mapasdevista'); ?></h3>
             
@@ -458,61 +488,6 @@ if($_SESSION['MdVauto']){
 <?php } ?>
 
 
-
-        <?php else: ?>
-
-            <?php if (isset($_GET['message']) && $_GET['message'] == 'save_success'): ?>
-                <div class="updated">
-                <p>
-                <?php _e('Map Saved', 'mapasdevista'); ?>
-                </p>
-                </div>
-                
-            <?php elseif (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['page_id']) && is_numeric($_GET['page_id']) ) : ?>
-                
-                <?php delete_post_meta($_GET['page_id'], '_mapasdevista'); ?>
-                <div class="updated">
-                <p>
-                <?php _e('Map Deleted', 'mapasdevista'); ?>
-                </p>
-                </div>
-                
-            <?php endif; ?>
-
-            <?php
-            $maps = mapasdevista_get_maps();
-            ?>
-
-            <table class="widefat fixed ">
-                <thead>
-                <tr class="column-title">
-                    <th> <?php _e('Map name', 'mapasdevista'); ?></th>
-                    <th> <?php _e('Page', 'mapasdevista'); ?></th>
-                    <th> </th>
-                </tr>
-                </thead>
-
-                <?php foreach ($maps as $m): ?>
-
-                    <?php
-
-                    ?>
-
-                    <tr>
-                        <td> <a href="<?php echo add_query_arg( array( 'action' => 'edit', 'page_id' => $m['page_id'] ) ) ; ?>"> <?php echo $m['name'] ? $m['name'] : __('Untitled', 'mapasdevista'); ?> </a> </td>
-                        <td> <a id="p<?=$m['page_id'];?>"href="<?php echo get_permalink( $m['page_id'] ); ?>"> <?php echo get_the_title( $m['page_id'] ); ?> </a> </td>
-                        <td> <a href="<?php echo add_query_arg( array( 'action' => 'delete', 'page_id' => $m['page_id'] ) ) ; ?>" onclick="return confirm('<?php _e('Are you sure you want to permanently delete this map?', 'mapasdevista'); ?>')"> <?php _e('Delete map', 'mapasdevista'); ?> </a> </td>
-                    </tr>
-
-
-                <?php endforeach; ?>
-
-
-            </table>
-
-            <br /><br />
-
-            <a href="<?php echo add_query_arg('action', 'new'); ?>"> <?php _e('Add New Map', 'mapasdevista'); ?> </a>
 <?php
 if($_SESSION['Zoom']){
 ?>
