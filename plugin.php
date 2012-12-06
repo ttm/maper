@@ -7,6 +7,11 @@
    Version: 0.01-alpha
    Author URI: http://labmacambira.sourceforge.net
  */
+wp_deregister_script('jquery');
+
+// load the local copy of jQuery in the footer
+// or load the Google API copy in the footer
+wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js', false, '1.3.2', true);
 wp_enqueue_script('jquery');
 
 add_action('init', 'init_sessions', 1);                                
@@ -70,6 +75,3 @@ function do_theme_redirect($url) {
         $wp_query->is_404 = true;
     }
 }
-
-
-

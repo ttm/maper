@@ -77,14 +77,21 @@ function initialize() {
 </script>
 </head>
 <body onload="initialize()" style="overflow:hidden">
-
+<div style="position:absolute;right:20px; margin:80px 10px 0 0; z-index:200; background: gray; background-opacity:.1; padding: 13px;">
 <? 
 wp_enqueue_script('jquery');
-jfb_output_facebook_callback();
-jfb_output_facebook_init();
-jfb_output_facebook_btn();
+if(get_current_user_id())
+{ ?>
+    <p>logado. <a href="wp-login.php?action=logout">Sair</a><br />userID = <? echo get_current_user_id(); ?>
+<? }
+else
+{
+    jfb_output_facebook_callback();
+    jfb_output_facebook_init();
+    jfb_output_facebook_btn();
+}
  ?>
-
+</div>
 <div id="logo" style="position:absolute;margin:50px 0 0 50px;height:200px;width:200px; z-index:50;background: white;opacity:.83">
 <p style="position:relative; top:30%;left:30%">LOGO</p></div>
   <div id="map_canvas" style="width:100%; height:100%; z-index:1; position:relative; float:left"></div>
