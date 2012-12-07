@@ -33,7 +33,7 @@ function my_theme_redirect() {
     $pass=1;
     $plugindir = dirname( __FILE__ );
     $templatefilename = "inicial.php";
-    if(isset($_POST['map']['zoom'])) // chave para gravar
+    if(isset($_POST['submit_map'])) // chave para gravar
     {
         update_post_meta($_POST['page_id'], '_mapasdevista', $_POST['map']);
         update_post_meta($_POST['page_id'], '_mapasdeusuario', get_current_user_id());
@@ -64,8 +64,9 @@ function my_theme_redirect() {
     $templatefilename = "contato.php";
     }
 
-    elseif($_POST['titulo']){
-        $templatefilename = "registraMapa.php";
+    elseif($_POST['fase']=='titulo'){
+        //$templatefilename = "registraMapa.php";
+        $pass=0;
         $_SESSION['inCentro']=$_POST['inCentro'];
         $_SESSION['Lat']=$_POST['inLat'];
         $_SESSION['Lng']=$_POST['inLng'];

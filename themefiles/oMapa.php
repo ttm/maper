@@ -65,12 +65,12 @@ function initialize() {
     zoom: 10,
     center: new google.maps.LatLng(-23.564298867964755, 313.3961061411132),
     
+    mapTypeControlOptions: {
+        mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.SATELLITE],
+        position: google.maps.ControlPosition.RIGHT_CENTER
+    },
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-//    mapTypeControl: true,
-//    mapTypeControlOptions: {
-//        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-//        position: google.maps.ControlPosition.BOTTOM_CENTER
-//    },
+    mapTypeControl: true,
     disableDefaultUI: true
     
   }
@@ -123,9 +123,27 @@ function refresh(){
     oFormObject.elements["inLat"].value =center.$a;
     oFormObject.elements["inLng"].value =center.ab;
     oFormObject.elements["inZoom"].value =zoom;
+    
+    oFormObject = document.forms['mdvform'];
+    oFormObject.elements["mpv_lat"].value =center.$a;
+    oFormObject.elements["mpv_lng"].value =center.ab;
+    oFormObject.elements["mpv_zoom"].value =zoom;
 }
 
-
+function manda(){
+       tipo=map.getMapTypeId();
+       if(tipo=='roadmap'){
+           document.getElementById("mpv_map_type_road").click();
+       }
+       else if(tipo == 'hybrid'){
+           document.getElementById("mpv_map_type_hybrid").click();
+       }
+       else if (tipo == 'satellite'){
+           document.getElementById("mpv_map_type_satellite").click();
+       }
+       document.getElementById('submitBttn').click();
+       document.getElementById('fase').value='titulo';
+}
 
 function registraMapa(){
     center=map.getCenter();
@@ -136,15 +154,19 @@ function registraMapa(){
     window.location="./registraMapa.php?lat=" + lat + "&lng=" + lng + "&zoom="+zoom;
 }
 </script>
-<body onload="initialize()">
+<body onload="initialize()" style="overflow:hidden">
+<div style="position: absolute;">
+<? require "formMdV.php"; ?>
+</div>
   <div id="map_canvas" style="width:100%; height:100%; z-index:1; position:relative; float:left"></div>
     <form id="mapForm" method="post" action="<?=$_SERVER['PHP_SELF'];?>">
-
         <input id="inLat" hidden modifiable="0" name="inLat" style="position:absolute;left:50%;bottom:34%;z-index:20;width:500px;opacity:0.7">
         <input id="inLng" hidden modifiable="0" name="inLng" style="position:absolute;left:50%;bottom:30%;z-index:20;width:500px;opacity:0.7">
         <input id="inZoom" hidden modifiable="0" name="inZoom" style="position:absolute;left:50%;bottom:35%;z-index:20;width:500px;opacity:0.7">
-        <input id="continuar" value="Colocar título" name="titulo" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7" type="submit" />
     </form>
+
+        <input id="continuar" value="Colocar título" name="titulo" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7; border-style:groove;" onmouseover="this.style.cursor='default'"  onclick="manda()" />
+
   <nav>
   <li>
   <a href="#">0.</a>
@@ -176,11 +198,10 @@ Primeiro, escolha a latitude, longitude e o zoom do mapa. Basta clicar no mapa e
 </div>
 
 <div style="left:60px;top:40%;z-index:60;background:white;position:absolute; padding:15px">
-Centro (lat,log)=<span id='lat'></span>, <span id='lng'></span><br />
-Zoom=<span id='zoom'></span><br />
-Fronteiras=<span id='fronteiras'></span><br />
+<b>Centro (lat,log)</b>=<span id='lat'></span>, <span id='lng'></span><br />
+<b>Zoom</b>=<span id='zoom'></span><br />
+<b>Fronteiras</b>=<span id='fronteiras'></span><br />
 </div>
-
 
 
 </body>
