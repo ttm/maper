@@ -124,10 +124,10 @@ function refresh(){
     oFormObject.elements["inLng"].value =center.ab;
     oFormObject.elements["inZoom"].value =zoom;
     
-    oFormObject = document.forms['mdvform'];
-    oFormObject.elements["mpv_lat"].value =center.$a;
-    oFormObject.elements["mpv_lng"].value =center.ab;
-    oFormObject.elements["mpv_zoom"].value =zoom;
+    oFormObject2 = document.forms['mdvform'];
+    oFormObject2.elements["mpv_lat"].value =center.$a;
+    oFormObject2.elements["mpv_lng"].value =center.ab;
+    oFormObject2.elements["mpv_zoom"].value =zoom;
 }
 
 function manda(){
@@ -154,18 +154,21 @@ function registraMapa(){
     window.location="./registraMapa.php?lat=" + lat + "&lng=" + lng + "&zoom="+zoom;
 }
 </script>
-<body onload="initialize()" style="overflow:hidden">
-<div style="position: absolute;">
-<? require "formMdV.php"; ?>
+<body onload="initialize()">
+<div>
+<? 
+$plugindir = dirname( __FILE__ );
+require $plugindir . "/formMdV.php";
+?>
 </div>
   <div id="map_canvas" style="width:100%; height:100%; z-index:1; position:relative; float:left"></div>
     <form id="mapForm" method="post" action="<?=$_SERVER['PHP_SELF'];?>">
-        <input id="inLat" hidden modifiable="0" name="inLat" style="position:absolute;left:50%;bottom:34%;z-index:20;width:500px;opacity:0.7">
-        <input id="inLng" hidden modifiable="0" name="inLng" style="position:absolute;left:50%;bottom:30%;z-index:20;width:500px;opacity:0.7">
-        <input id="inZoom" hidden modifiable="0" name="inZoom" style="position:absolute;left:50%;bottom:35%;z-index:20;width:500px;opacity:0.7">
+        <input id="inLat" hidden modifiable="0" name="inLat" style="position:absolute;left:5%;bottom:4%;z-index:20;width:500px;opacity:0.7">
+        <input id="inLng" hidden modifiable="0" name="inLng" style="position:absolute;left:5%;bottom:0%;z-index:20;width:500px;opacity:0.7">
+        <input id="inZoom" hidden modifiable="0" name="inZoom" style="position:absolute;left:5%;bottom:5%;z-index:20;width:500px;opacity:0.7">
     </form>
 
-        <input id="continuar" value="Colocar título" name="titulo" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7; border-style:groove;" onmouseover="this.style.cursor='default'"  onclick="manda()" />
+        <input id="continuar" value="Colocar título" name="titulo" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7; border-style:groove;" onmouseover="this.style.cursor='default'"  onclick="manda()" type="button"/>
 
   <nav>
   <li>
@@ -197,7 +200,7 @@ function registraMapa(){
 Primeiro, escolha a latitude, longitude e o zoom do mapa. Basta clicar no mapa e arrastar, 2 cliques para dar zoom in ou 2 cliques com o botão esquerdo para zoom out.
 </div>
 
-<div style="left:60px;top:40%;z-index:60;background:white;position:absolute; padding:15px">
+<div style="left:50%;margin-left:-35%;bottom:1%;z-index:60;background:white;position:absolute; padding:15px">
 <b>Centro (lat,log)</b>=<span id='lat'></span>, <span id='lng'></span><br />
 <b>Zoom</b>=<span id='zoom'></span><br />
 <b>Fronteiras</b>=<span id='fronteiras'></span><br />

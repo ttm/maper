@@ -103,8 +103,8 @@ $querystr = "SELECT post_id FROM $wpdb->postmeta WHERE $wpdb->postmeta.meta_key 
 $mapas = $wpdb->get_results($querystr);
     ?>
 
-<div style="height:40%;width:70%;left:50%;margin-left:-35%;top:10%;background:white;z-index:50;position:absolute">
-<p>Abaixo estão seus mapas.</p>
+<div style="left:50%;margin-left:-35%;top:10%;background:white;z-index:50;position:absolute;padding:10px;">
+<p>Abaixo estão seus mapas:</p>
 <?
 
 foreach($mapas as $m){
@@ -116,14 +116,6 @@ foreach($mapas as $m){
     <?
 }?>
 
-
-<ul>
-    <li> <a href="http://programacao.baixocentro.org">Baixo Centro</a></li>
-    <li><a href="http://mapeamentofortaleza.org.br">Mapeamento de Fortaleza</a></li>
-    <li><a href="http://moendogente.org.br">Moedo Gente</a></li>
-    <li><a href="http://afroambiental.org">Rede Afro-Ambiental</a>: Rede Nacional de Cultura Ambiental Afrobrasileira</li>
-    <li> listar outros </li>
-</ul>
 </div>
 
 </body>

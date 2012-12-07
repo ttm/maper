@@ -8,7 +8,7 @@ function mapasdevista_maps_pageB() {
         <h2><?php _e('Maps', 'mapasdevista'); ?></h2>
         
         
-        <?php if (isset($_SESSION['Lat'])) : ?>
+        <?php if (1) : ?>
 
             <?php
 
@@ -24,14 +24,10 @@ echo "BB";
                 $map['filters'] = array();
 
             ?>
-            <pre>
-            <?php //print_r($map); ?>
-            </pre>
-            <form method="POST" id="mdvform">
+            <form id="mdvform" method="POST" >
             <?php do_action('mapasdevista_maps_settings_top',$map); ?>
             <h3><?php _e('Select the page that will be the placeholder for this map', 'mapasdevista'); ?></h3>
             <?php 
-           if($_SESSION['Zoom']){ 
 echo "BB2";
     $defaults = array(
             'post_type'             => 'page',
@@ -41,12 +37,7 @@ echo "BB2";
             );
 $page_id = wp_insert_post( $defaults , $wp_error);
             wp_dropdown_pages( "selected=$page_id" );
-$_SESSION['PageNumb']=$page_id;
-           }
-           else{
-            wp_dropdown_pages( 'selected=' . $_GET['page_id'] );
-
-           } ?>
+           ?>
 
             <input type="hidden" name="original_page_id" value="<?php echo $_GET['page_id']; ?>" />
 
@@ -331,13 +322,6 @@ wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/
     foo.click();
     alert("AA");
 
-
-var point11 = new mxn.LatLonPoint(
-                                        parseFloat(<? echo $_SESSION['Lat']; ?>),
-                                        parseFloat(<? echo $_SESSION['Lng']; ?>)
-                                    );
-                        mapstraction.setCenterAndZoom(point11, parseInt(<? echo $_SESSION['Zoom']; ?>));
-
 <?    } ?>
  
                 
@@ -352,14 +336,6 @@ var point11 = new mxn.LatLonPoint(
     foo=document.getElementById("mpv_zoom");
     foo.value=parseFloat(<? echo $_SESSION['Zoom']; ?>);
 //    alert("AA");
-
-var point11 = new mxn.LatLonPoint(
-                                        parseFloat(<? echo $_SESSION['Lat']; ?>),
-                                        parseFloat(<? echo $_SESSION['Lng']; ?>)
-                                    );
-                        mapstraction.setCenterAndZoom(point11, parseInt(<? echo $_SESSION['Zoom']; ?>));
-
-
 
 
 
@@ -410,15 +386,6 @@ var point11 = new mxn.LatLonPoint(
             <input type="submit" id='submitBttn' name="submit_map" value="<?php _e('Save Changes', 'mapasdevista'); ?>" />
 
             </form>
-<?php
-if($_SESSION['MdVauto']){
-    ?>
-    <script>
-       //window.setTimeout("document.getElementById('submitBttn').click()",1000);
-       document.getElementById("p<?=$_SESSION['PageNumb']-1;?>").click();
-    </script>
-<?php } ?>
-
         <?php endif; ?>
     </div>
 
