@@ -14,7 +14,7 @@ overflow:auto;
          border-left: solid 1px #ccc;
          z-index: 50;
          position: absolute;
-         margin-left:20px;
+         margin-left:120px;
          width:100%;
   }
 
@@ -88,6 +88,12 @@ function registraMapa(){
 }
 </script>
 <body onload="initialize()" style="overflow:hidden">
+<? $url=plugins_url("maper/"); ?>
+
+<div id="logo" style="position:absolute;margin:10px 0 0 10px;z-index:150;background: white;opacity:.83">
+    <img src="<? echo $url ?>themefiles/figs/logo.png" style="width:65px;height:130px;">
+</div>
+
   <div id="map_canvas" style="width:100%; height:100%; z-index:1; position:relative; float:left"></div>
   
     <form method="post" action="<?=$_SERVER['PHP_SELF'];?>">

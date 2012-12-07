@@ -95,7 +95,6 @@ $url=plugins_url("maper/");
  ?>
 </div>
 <div id="logo" style="position:absolute;margin:10px 0 0 10px;z-index:50;background: white;opacity:.83">
-
     <img src="<? echo $url ?>themefiles/figs/logo.png" style="width:65px;height:130px;">
 </div>
   <div id="map_canvas" style="width:100%; height:100%; z-index:1; position:relative; float:left"></div>

@@ -37,7 +37,7 @@ function my_theme_redirect() {
     {
         update_post_meta($_POST['page_id'], '_mapasdevista', $_POST['map']);
         update_post_meta($_POST['page_id'], '_mapasdeusuario', get_current_user_id());
-    $templatefilename = "apresentacao.php";
+    $templatefilename = "inicial.php";
     }
 
     if($_POST['apresentacao']){

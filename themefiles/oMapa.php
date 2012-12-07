@@ -14,7 +14,7 @@ overflow:auto;
          border-left: solid 1px #ccc;
          z-index: 50;
          position: absolute;
-         margin-left:20px;
+         margin-left:120px;
          width:100%;
   }
 
@@ -154,8 +154,14 @@ function registraMapa(){
     window.location="./registraMapa.php?lat=" + lat + "&lng=" + lng + "&zoom="+zoom;
 }
 </script>
-<body onload="initialize()">
-<div>
+<body onload="initialize()" style="overflow:hidden">
+<? $url=plugins_url("maper/"); ?>
+<div id="logo" style="position:absolute;margin:10px 0 0 10px;z-index:150;background: white;opacity:.83">
+    <img src="<? echo $url ?>themefiles/figs/logo.png" style="width:65px;height:130px;">
+</div>
+
+
+<div style="position: absolute;">
 <? 
 $plugindir = dirname( __FILE__ );
 require $plugindir . "/formMdV.php";
@@ -196,7 +202,7 @@ require $plugindir . "/formMdV.php";
   <a href="#">7.Exportar</a>
 </nav>
 
-<div style="padding:15px;left:40px;top:80px;z-index:80;position:absolute;background:white;">
+<div style="padding:15px;left:140px;top:80px;z-index:80;position:absolute;background:white;">
 Primeiro, escolha a latitude, longitude e o zoom do mapa. Basta clicar no mapa e arrastar, 2 cliques para dar zoom in ou 2 cliques com o botão esquerdo para zoom out.
 </div>
 
