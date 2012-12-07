@@ -141,8 +141,8 @@ function manda(){
        else if (tipo == 'satellite'){
            document.getElementById("mpv_map_type_satellite").click();
        }
-       document.getElementById('submitBttn').click();
        document.getElementById('fase').value='titulo';
+       document.getElementById('submitBttn').click();
 }
 
 function registraMapa(){

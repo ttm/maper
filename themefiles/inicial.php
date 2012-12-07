@@ -82,7 +82,7 @@ function initialize() {
 wp_enqueue_script('jquery');
 if(get_current_user_id())
 { ?>
-    <p>logado. <a href="wp-login.php?action=logout">Sair</a><br />userID = <? echo get_current_user_id(); ?>
+    <p>logado. <a href="wp-login.php?action=logout">Sair</a><br />userID = <? echo get_current_user_id(); ?><br /><a href="?meus_mapas=1">Ver mapas</a>
 <? }
 else
 {

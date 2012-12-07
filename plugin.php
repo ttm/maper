@@ -37,8 +37,7 @@ function my_theme_redirect() {
     {
         update_post_meta($_POST['page_id'], '_mapasdevista', $_POST['map']);
         update_post_meta($_POST['page_id'], '_mapasdeusuario', get_current_user_id());
-//        header('?page_id='.$_POST['page_id']);
-        $pass=0;
+    $templatefilename = "apresentacao.php";
     }
 
     if($_POST['apresentacao']){
@@ -52,6 +51,10 @@ function my_theme_redirect() {
     }
     elseif($_POST['iniciar']){
     $templatefilename = "oMapa.php";
+    }
+
+    elseif($_GET['meus_mapas']){
+    $templatefilename = "meus_mapas.php";
     }
 
     elseif($_GET['mdv']){
@@ -77,7 +80,7 @@ function my_theme_redirect() {
         $pass=0;
     }
 
-    if($pass){
+    if($pass>=1){
         $return_template = $plugindir . '/themefiles/' . $templatefilename;
         do_theme_redirect($return_template);
     }
@@ -93,3 +96,6 @@ function do_theme_redirect($url) {
         $wp_query->is_404 = true;
     }
 }
+
+
+//header('?page_id='.$_POST['page_id']);
