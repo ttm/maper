@@ -140,9 +140,9 @@ function registraMapa(){
   <div id="map_canvas" style="width:100%; height:100%; z-index:1; position:relative; float:left"></div>
     <form id="mapForm" method="post" action="<?=$_SERVER['PHP_SELF'];?>">
 
-        <input id="inLat" modifiable="0" name="inLat" style="position:absolute;left:50%;bottom:34%;z-index:20;width:500px;opacity:0.7">
-        <input id="inLng" modifiable="0" name="inLng" style="position:absolute;left:50%;bottom:30%;z-index:20;width:500px;opacity:0.7">
-        <input id="inZoom" modifiable="0" name="inZoom" style="position:absolute;left:50%;bottom:35%;z-index:20;width:500px;opacity:0.7">
+        <input id="inLat" hidden modifiable="0" name="inLat" style="position:absolute;left:50%;bottom:34%;z-index:20;width:500px;opacity:0.7">
+        <input id="inLng" hidden modifiable="0" name="inLng" style="position:absolute;left:50%;bottom:30%;z-index:20;width:500px;opacity:0.7">
+        <input id="inZoom" hidden modifiable="0" name="inZoom" style="position:absolute;left:50%;bottom:35%;z-index:20;width:500px;opacity:0.7">
         <input id="continuar" value="Colocar título" name="titulo" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7" type="submit" />
     </form>
   <nav>
@@ -171,23 +171,16 @@ function registraMapa(){
   <a href="#">7.Exportar</a>
 </nav>
 
-<div style="height:20%;width:70%;left:40px;top:80px;z-index:80;position:absolute;background:white;">
-Texto de apresentação.
-Texto de apresentação.
-Texto de apresentação.
-Texto de apresentação.
-Texto de apresentação.
+<div style="padding:15px;left:40px;top:80px;z-index:80;position:absolute;background:white;">
+Primeiro, escolha a latitude, longitude e o zoom do mapa. Basta clicar no mapa e arrastar, 2 cliques para dar zoom in ou 2 cliques com o botão esquerdo para zoom out.
 </div>
 
-<div style="left:60px;top:40%;z-index:60;background:white;position:absolute;">
+<div style="left:60px;top:40%;z-index:60;background:white;position:absolute; padding:15px">
 Centro (lat,log)=<span id='lat'></span>, <span id='lng'></span><br />
 Zoom=<span id='zoom'></span><br />
 Fronteiras=<span id='fronteiras'></span><br />
 </div>
 
-<div style="bottom:10%;left:5%;width:40%;background:gray;height:20%;z-index:50;position:absolute;"><p style="top:40%;left:30%;position:relative;">  MAPA LIMPO<br /></p>
-( clica e somem os campos todos e botoes)
-</div>
 
 
 </body>

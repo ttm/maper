@@ -90,22 +90,26 @@ else
     jfb_output_facebook_init();
     jfb_output_facebook_btn();
 }
+
+$url=plugins_url("maper/");
  ?>
 </div>
-<div id="logo" style="position:absolute;margin:50px 0 0 50px;height:200px;width:200px; z-index:50;background: white;opacity:.83">
-<p style="position:relative; top:30%;left:30%">LOGO</p></div>
+<div id="logo" style="position:absolute;margin:10px 0 0 10px;z-index:50;background: white;opacity:.83">
+
+    <img src="<? echo $url ?>themefiles/figs/logo.png" style="width:65px;height:130px;">
+</div>
   <div id="map_canvas" style="width:100%; height:100%; z-index:1; position:relative; float:left"></div>
   <div id="transpbox" style="width:100%; height:100%;background-color:#ffffff;opacity:0.4; z-index:10; position: absolute"></div>
 
   <nav>
   <li class="active">
-  <a href="#">Mapa de vista</a>
+  <a href="?mdv=1">Mapa de vista</a>
   </li>
   <li>
-  <a href="#">Como funciona</a>
+  <a href="?funciona=1">Como funciona</a>
   </li>
   <li>
-  <a href="#">Contato</a>
+  <a href="?contato=1">Contato</a>
   </li>
   <li>
 </nav>
@@ -115,18 +119,17 @@ else
     <form method="post" action="<?=$_SERVER['PHP_SELF'];?>">
         <input id="comeceAquiBtn" value="Comece seu mapa aqui" name="apresentacao" style="position:absolute;left:30%;top:15%;z-index:20;height:200px;width:200px;opacity:0.7" type="submit" />
     </form>
-    <form method="link" action="colabore.php">
-        <input id="colaboreBtn" value="Colabore em algum mapa" style="position:absolute;left:50%;top:15%;z-index:20;height:200px;width:200px;opacity:0.7" type="submit" />
+    <form method="post" action="<?=$_SERVER['PHP_SELF'];?>">
+        <input id="colaboreBtn" value="Colabore em algum mapa" name="colabore" style="position:absolute;left:50%;top:15%;z-index:20;height:200px;width:200px;opacity:0.7" type="submit" />
     </form>
-    <form method="link" action="contrate.php">
-        <input id="contrateBtn" value="Contrate a comunidade" style="position:absolute;left:70%;top:15%;z-index:20;height:200px;width:200px;opacity:0.7" type="submit" />
+    <form method="post" action="<?=$_SERVER['PHP_SELF'];?>">
+        <input id="contrateBtn" value="Contrate a comunidade" name="contrate" style="position:absolute;left:70%;top:15%;z-index:20;height:200px;width:200px;opacity:0.7" type="submit" />
     </form>
 </div>
 
-<div style="position:absolute;left:25%;bottom:0px;background:white;z-index:50;height:350px;width:700px;padding:0">
-    <div style="height:40%;background:gray;margin-top:-17px;">
-        <p style="position:relative; left:40%; top:50%">Galeria slider</p>
-        <p style="position:relative; left:40%; top:50%">( mapa 100% )</p>
+<div style="position:absolute;left:25%;bottom:0px;background:white;z-index:50;height:250px;width:700px;padding:0">
+    <div style="height:20%;background:gray;margin-top:-17px;">
+        <p style="position:relative; left:40%; top:50%">Galeria</p>
     </div>
 
 

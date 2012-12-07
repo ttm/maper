@@ -89,6 +89,7 @@ function registraMapa(){
 </script>
 <body onload="initialize()" style="overflow:hidden">
   <div id="map_canvas" style="width:100%; height:100%; z-index:1; position:relative; float:left"></div>
+  
     <form method="post" action="<?=$_SERVER['PHP_SELF'];?>">
         <input id="continuar" value="Iniciar Mapa" name="iniciar" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7" type="submit" />
     </form>
@@ -118,19 +119,13 @@ function registraMapa(){
   <a href="#">7.Exportar</a>
 </nav>
 
-<div style="height:80%;width:20%;left:100px;top:100px;background:white;z-index:50;position:absolute">
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
-TEXTO MdV Maper Mapas Publicacao Facebook Tela inteira Embbed
+<div style="height:20%;width:20%;left:100px;top:100px;background:white;z-index:50;position:absolute; padding:5px;">
+Este é um passo-a-passo para criação e publicação dos mapas.
+Por favor, em caso de quaisquer dificuldades, entre em 
+<a href="?contato=1">contato conosco</a>.
+
 </div>
+  <div id="transpbox" style="width:100%; height:100%;background-color:#ffffff;opacity:0.4; z-index:10; position: absolute"></div>
 
 </body>
 </html>

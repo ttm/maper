@@ -44,9 +44,26 @@ function my_theme_redirect() {
     if($_POST['apresentacao']){
     $templatefilename = "apresentacao.php";
     }
+    elseif($_POST['colabore']){
+    $templatefilename = "colabore.php";
+    }
+    elseif($_POST['contrate']){
+    $templatefilename = "contrate.php";
+    }
     elseif($_POST['iniciar']){
     $templatefilename = "oMapa.php";
     }
+
+    elseif($_GET['mdv']){
+    $templatefilename = "mdv.php";
+    }
+    elseif($_GET['funciona']){
+    $templatefilename = "funciona.php";
+    }
+    elseif($_GET['contato']){
+    $templatefilename = "contato.php";
+    }
+
     elseif($_POST['titulo']){
         $templatefilename = "registraMapa.php";
         $_SESSION['inCentro']=$_POST['inCentro'];
