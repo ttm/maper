@@ -177,7 +177,7 @@ require $plugindir . "/formMdV.php";
         <input id="inZoom" hidden modifiable="0" name="inZoom" style="position:absolute;left:5%;bottom:5%;z-index:20;width:500px;opacity:0.7">
     </form>
 
-        <input id="continuar" value="Colocar título" name="titulo" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7; border-style:groove;" onmouseover="this.style.cursor='default'"  onclick="manda()" type="button"/>
+        <input id="continuar" value="Colocar filtros" name="filtros" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7; border-style:groove;" onmouseover="this.style.cursor='default'"  onclick="manda()" type="button"/>
 
   <nav>
   <li>

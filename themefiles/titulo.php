@@ -192,7 +192,7 @@ require $plugindir . "/formMdV.php";
         <input id="inZoom" hidden modifiable="0" name="inZoom" style="position:absolute;left:5%;bottom:5%;z-index:20;width:500px;opacity:0.7">
     </form>
 
-        <input id="continuar" value="Colocar título" name="titulo" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7; border-style:groove;" onmouseover="this.style.cursor='default'"  onclick="manda()" type="button"/>
+        <input id="continuar" value="Colocar pinos e informações" name="titulo" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7; border-style:groove;" onmouseover="this.style.cursor='default'"  onclick="manda()" type="button"/>
 
   <nav>
   <li>
@@ -221,7 +221,7 @@ require $plugindir . "/formMdV.php";
 </nav>
 
 <div style="padding:15px;left:140px;top:80px;z-index:80;position:absolute;background:white;">
-Por enquanto, todos os títulos são todos "Mapas de Vista" pois o plugin de wordpress só possui um título (imagem) utilizada por todos os mapas. A utilização de títulos diferentes para mapas diferentes incorrerá em modificações no mapas de vista, plugin de wp, e deverá ser discutido com outros devs.
+Por enquanto, os títulos são todos "Mapas de Vista" pois o plugin de wordpress só possui um título (imagem) utilizada por todos os mapas. A utilização de títulos diferentes para mapas diferentes incorrerá em modificações no mapas de vista, plugin de wp, e deverá ser discutido com outros devs.
 </div>
 
 <div style="left:50%;margin-left:-35%;bottom:1%;z-index:60;background:white;position:absolute; padding:15px">

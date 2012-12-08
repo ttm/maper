@@ -94,8 +94,9 @@ function my_theme_redirect() {
             $_SESSION['step']='post';
             $templatefilename = "titulo.php";
         }
-        else{
+        elseif($_SESSION['step']=='post'){
             $templatefilename = 'post.php';
+            $_SESSION['step']='filtros';
         }
     }
 
