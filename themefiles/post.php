@@ -62,17 +62,14 @@ transition: all 0.4s linear;
 <script type="text/javascript">
 function initialize() {
   var myOptions = {
-    zoom: parseFloat(<?=$_SESSION['Zoom'];?>),
-    center: new google.maps.LatLng(parseFloat(<?=$_SESSION['Lat'];?>), parseFloat(<?=$_SESSION['Lng']; ?>)),
-    //zoom: 10,
-    //center: new google.maps.LatLng(-23.564298867964755, 313.3961061411132),
+    zoom: 10,
+    center: new google.maps.LatLng(-23.564298867964755, 313.3961061411132),
     
     mapTypeControlOptions: {
         mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.SATELLITE],
         position: google.maps.ControlPosition.RIGHT_CENTER
     },
-    mapTypeId: eval("google.maps.MapTypeId."+"<?=$_SESSION['Terrain_'];?>".toUpperCase()),
-    //mapTypeId: google.maps.MapTypeId.HYBRID,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapTypeControl: true,
     disableDefaultUI: true
     
@@ -85,6 +82,9 @@ google.maps.event.addListener(map, 'click', function(event) {
 refresh();
         });
 
+google.maps.event.addListener(map, 'center_changed', function(event) {
+refresh();
+        });
 
 google.maps.event.addListener(map, 'zoom_changed', function(event) {
 refresh();
@@ -130,33 +130,6 @@ function refresh(){
     oFormObject2.elements["mpv_zoom"].value =zoom;
 }
 
-function bootstrap(){
-    center=map.getCenter();
-    lat=document.getElementById("lat");
-    lng=document.getElementById("lng");
-    lat.innerHTML=center.$a;
-    lng.innerHTML=center.ab;
-
-    zoom=map.getZoom();
-    zoom_=document.getElementById("zoom");
-    zoom_.innerHTML=zoom;
-
-    front=map.getBounds();
-    front_=document.getElementById("fronteiras");
-    front_.innerHTML=front;
-
-    oFormObject = document.forms['mapForm'];
-    oFormObject.elements["inLat"].value =center.$a;
-    oFormObject.elements["inLng"].value =center.ab;
-    oFormObject.elements["inZoom"].value =zoom;
-    
-    oFormObject2 = document.forms['mdvform'];
-    oFormObject2.elements["mpv_lat"].value =center.$a;
-    oFormObject2.elements["mpv_lng"].value =center.ab;
-    oFormObject2.elements["mpv_zoom"].value =zoom;
-}
-
-
 function manda(){
        tipo=map.getMapTypeId();
        if(tipo=='roadmap'){
@@ -168,12 +141,22 @@ function manda(){
        else if (tipo == 'satellite'){
            document.getElementById("mpv_map_type_satellite").click();
        }
+       document.getElementById('fase').value='titulo';
        document.getElementById('submitBttn').click();
 }
 
+function registraMapa(){
+    center=map.getCenter();
+    lat=center.$a;
+    lng=center.ab;
+
+    zoom=map.getZoom();
+    window.location="./registraMapa.php?lat=" + lat + "&lng=" + lng + "&zoom="+zoom;
+}
 </script>
 <body onload="initialize()" style="overflow:hidden">
-<? $url=plugins_url("maper/"); ?>
+<? $url=plugins_url("maper/");
+$_SESSION['step']='titulo'; ?>
 <div id="logo" style="position:absolute;margin:10px 0 0 10px;z-index:150;background: white;opacity:.83">
     <img src="<? echo $url ?>themefiles/figs/logo.png" style="width:65px;height:130px;">
 </div>
@@ -201,10 +184,10 @@ require $plugindir . "/formMdV.php";
   <li>
   <a href="#">1.O mapa</a>
   </li>
-  <li class="active">
+  <li>
   <a href="#">2.</a>
   </li>
-  <li>
+  <li class="active">
   <a href="#">3.Postagem</a>
   </li>
   <li>
@@ -221,7 +204,7 @@ require $plugindir . "/formMdV.php";
 </nav>
 
 <div style="padding:15px;left:140px;top:80px;z-index:80;position:absolute;background:white;">
-Por enquanto, todos os títulos são Mapas de Vista pois o plugin de wordpress só possui um título (imagem) utilizada por todos os mapas. A utilização de títulos diferentes para mapas diferentes incorrerá em modificações no mapa, e deverá ser discutido com outros devs.
+Coloque pinos, clique neles para inserir conteúdo.
 </div>
 
 <div style="left:50%;margin-left:-35%;bottom:1%;z-index:60;background:white;position:absolute; padding:15px">
@@ -229,8 +212,6 @@ Por enquanto, todos os títulos são Mapas de Vista pois o plugin de wordpress s
 <b>Zoom</b>=<span id='zoom'></span><br />
 <b>Fronteiras</b>=<span id='fronteiras'></span><br />
 </div>
-
-  <div id="transpbox" style="width:100%; height:100%;background-color:#ffffff;opacity:0.4; z-index:10; position: absolute"></div>
 
 </body>
 

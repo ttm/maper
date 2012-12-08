@@ -66,13 +66,23 @@ function my_theme_redirect() {
     // SEMPRE
     // 1) Atualizar o $_SESSION (da pagina do mapa pra frente)
     //elseif($_POST['fase']=='titulo' or $_SESSION['step']=='post'){ // Deprecated
+    //error_log( print_r($_POST, true) );
     elseif($_POST['fase']=='titulo' or $_SESSION['step']=='post'){ // Deprecated
         //$templatefilename = "registraMapa.php";
         $_SESSION['inCentro']=$_POST['inCentro'];
-        $_SESSION['Lat']=$_POST['inLat'];
-        $_SESSION['Lng']=$_POST['inLng'];
-        $_SESSION['MdVauto']=1;
-        $_SESSION['Zoom']=$_POST['inZoom'];
+        $_SESSION['foo']=$_POST;
+        $_SESSION['Lat']=$_POST["map"]['coord']['lat'];
+        $_SESSION['Lng']=$_POST["map"]['coord']['lng'];
+        $_SESSION['MdVauto']=1; // DEPRECATED
+        $_SESSION['Zoom']=$_POST["map"]['zoom'];
+        $_SESSION['Terrain']=$_POST['map']['type'];
+        // Variavel Terrain_ para ativar o mapa
+        if($_SESSION['Terrain']=='road'){
+            $_SESSION['Terrain_']='roadmap';
+        }
+        else{
+            $_SESSION['Terrain_']=$_SESSION['Terrain'];
+        }
     }
 
     // 2) ATUALIZAR O BD (da pagina do mapa pra frente)
