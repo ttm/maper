@@ -11,7 +11,7 @@ function mapasdevista_maps_pageB() {
         <?php if (1) : ?>
 
             <?php
-
+$map=$_SESSION['map'];
 echo "BB";
 
             if (!is_array($map))
@@ -29,6 +29,10 @@ echo "BB";
             <h3><?php _e('Select the page that will be the placeholder for this map', 'mapasdevista'); ?></h3>
             <?php 
 echo "BB2";
+if(isset($_SESSION['page_id'])){
+            wp_dropdown_pages( "selected=" . $_SESSION['page_id'] );
+}
+else{
     $defaults = array(
             'post_type'             => 'page',
             'post_author'           => 1,
@@ -37,6 +41,7 @@ echo "BB2";
             );
 $page_id = wp_insert_post( $defaults , $wp_error);
             wp_dropdown_pages( "selected=$page_id" );
+}
            ?>
 
             <input type="hidden" name="original_page_id" value="<?php echo $_GET['page_id']; ?>" />

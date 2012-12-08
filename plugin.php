@@ -36,6 +36,8 @@ function my_theme_redirect() {
 
     if($_POST['apresentacao']){ // inicial.php sends us here
     $templatefilename = "apresentacao.php";
+    unset($_SESSION['map']);
+    unset($_SESSION['page_id']);
     }
     elseif($_POST['colabore']){  // inicial.php sends us here
     $templatefilename = "colabore.php";
@@ -69,6 +71,8 @@ function my_theme_redirect() {
     //error_log( print_r($_POST, true) );
     elseif($_POST['fase']=='titulo' or $_SESSION['step']=='post'){ // Deprecated
         //$templatefilename = "registraMapa.php";
+        $_SESSION['map']=$_POST['map'];
+        $_SESSION['page_id']=$_POST['page_id'];
         $_SESSION['inCentro']=$_POST['inCentro'];
         $_SESSION['foo']=$_POST;
         $_SESSION['Lat']=$_POST["map"]['coord']['lat'];
