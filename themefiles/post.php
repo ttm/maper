@@ -62,17 +62,18 @@ transition: all 0.4s linear;
 <script type="text/javascript">
 function initialize() {
   var myOptions = {
-    zoom: 10,
-    center: new google.maps.LatLng(-23.564298867964755, 313.3961061411132),
-    
+    zoom: parseFloat(<?=$_SESSION['Zoom'];?>),
+    center: new google.maps.LatLng(parseFloat(<?=$_SESSION['Lat'];?>), parseFloat(<?=$_SESSION['Lng']; ?>)),
+    //zoom: 10,
+    //center: new google.maps.LatLng(-23.564298867964755, 313.3961061411132),
     mapTypeControlOptions: {
         mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.SATELLITE],
         position: google.maps.ControlPosition.RIGHT_CENTER
     },
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeId: eval("google.maps.MapTypeId."+"<?=$_SESSION['Terrain_'];?>".toUpperCase()),
+    //mapTypeId: google.maps.MapTypeId.HYBRID,
     mapTypeControl: true,
     disableDefaultUI: true
-    
   }
   map = new google.maps.Map(document.getElementById("map_canvas"),
       myOptions);
