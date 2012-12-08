@@ -62,8 +62,8 @@ transition: all 0.4s linear;
 <script type="text/javascript">
 function initialize() {
   var myOptions = {
-    zoom: 10,
-    center: new google.maps.LatLng(-23.564298867964755, 313.3961061411132),
+    zoom: 4,
+    center: new google.maps.LatLng(-12.039653176087215, -49.68006573388681),
     
     mapTypeControlOptions: {
         mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.SATELLITE],

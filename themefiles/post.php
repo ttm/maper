@@ -80,6 +80,7 @@ function initialize() {
   refresh();
 
 google.maps.event.addListener(map, 'click', function(event) {
+    placeMarker(event.latLng);
 refresh();
         });
 
@@ -94,10 +95,20 @@ refresh();
 
 
 function placeMarker(location) {
-      var marker = new google.maps.Marker({
-                position: location,
-                      map: map
-                        });
+    var marker = new google.maps.Marker({
+                            position: location,
+                            draggable: true,
+                            map: map
+                            });
+
+     var infowindow = new google.maps.InfoWindow({
+             content: " "
+                   });
+
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent('<h3>'+"Titulo do post"+'</h3>'+' Infotext<br />'+marker.getPosition());
+        infowindow.open(map, this);
+        });
 }
 
 
@@ -142,17 +153,7 @@ function manda(){
        else if (tipo == 'satellite'){
            document.getElementById("mpv_map_type_satellite").click();
        }
-       document.getElementById('fase').value='titulo';
        document.getElementById('submitBttn').click();
-}
-
-function registraMapa(){
-    center=map.getCenter();
-    lat=center.$a;
-    lng=center.ab;
-
-    zoom=map.getZoom();
-    window.location="./registraMapa.php?lat=" + lat + "&lng=" + lng + "&zoom="+zoom;
 }
 </script>
 <body onload="initialize()" style="overflow:hidden">
@@ -205,7 +206,7 @@ require $plugindir . "/formMdV.php";
 </nav>
 
 <div style="padding:15px;left:140px;top:80px;z-index:80;position:absolute;background:white;">
-Coloque pinos, clique neles para inserir conteúdo.
+Clique no mapa para colocar pinos. Clique no pino para inserir conteúdo. Arraste o pino para atualizar localização.
 </div>
 
 <div style="left:50%;margin-left:-35%;bottom:1%;z-index:60;background:white;position:absolute; padding:15px">

@@ -221,7 +221,7 @@ require $plugindir . "/formMdV.php";
 </nav>
 
 <div style="padding:15px;left:140px;top:80px;z-index:80;position:absolute;background:white;">
-Por enquanto, todos os títulos são Mapas de Vista pois o plugin de wordpress só possui um título (imagem) utilizada por todos os mapas. A utilização de títulos diferentes para mapas diferentes incorrerá em modificações no mapa, e deverá ser discutido com outros devs.
+Por enquanto, todos os títulos são todos "Mapas de Vista" pois o plugin de wordpress só possui um título (imagem) utilizada por todos os mapas. A utilização de títulos diferentes para mapas diferentes incorrerá em modificações no mapas de vista, plugin de wp, e deverá ser discutido com outros devs.
 </div>
 
 <div style="left:50%;margin-left:-35%;bottom:1%;z-index:60;background:white;position:absolute; padding:15px">
