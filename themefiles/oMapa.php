@@ -69,9 +69,10 @@ function initialize() {
         mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.SATELLITE],
         position: google.maps.ControlPosition.RIGHT_CENTER
     },
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeId: google.maps.MapTypeId.HYBRID,
     mapTypeControl: true,
-    disableDefaultUI: true
+    disableDefaultUI: true,
+
     
   }
   map = new google.maps.Map(document.getElementById("map_canvas"),
@@ -145,14 +146,6 @@ function manda(){
        document.getElementById('submitBttn').click();
 }
 
-function registraMapa(){
-    center=map.getCenter();
-    lat=center.$a;
-    lng=center.ab;
-
-    zoom=map.getZoom();
-    window.location="./registraMapa.php?lat=" + lat + "&lng=" + lng + "&zoom="+zoom;
-}
 </script>
 <body onload="initialize()" style="overflow:hidden">
 <? $url=plugins_url("maper/"); ?>
@@ -203,7 +196,7 @@ require $plugindir . "/formMdV.php";
 </nav>
 
 <div style="padding:15px;left:140px;top:80px;z-index:80;position:absolute;background:white;">
-Primeiro, escolha a latitude, longitude e o zoom do mapa. Basta clicar no mapa e arrastar, 2 cliques para dar zoom in ou 2 cliques com o botão esquerdo para zoom out.
+Primeiro, escolha a latitude, longitude e o zoom do mapa. Basta clicar no mapa e arrastar, 2 cliques para dar zoom in ou 2 cliques com o botão esquerdo para zoom out.<br />Escolha também o tipo: estrada/rios, terreno e híbrido. APERTE F11 para melhor utilizacao (tela cheia).
 </div>
 
 <div style="left:50%;margin-left:-35%;bottom:1%;z-index:60;background:white;position:absolute; padding:15px">

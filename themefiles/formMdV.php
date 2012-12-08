@@ -382,7 +382,7 @@ wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/
 
             <?php do_action('mapasdevista_maps_settings_bottom',$map); ?>
             
-        <input id="fase" hidden modifiable="0" name="inLat" style="position:absolute;left:50%;bottom:34%;z-index:20;width:500px;opacity:0.7">
+        <input id="fase" hidden modifiable="0" name="fase" style="position:absolute;left:50%;bottom:34%;z-index:20;width:500px;opacity:0.7">
             <input type="submit" id='submitBttn' name="submit_map" value="<?php _e('Save Changes', 'mapasdevista'); ?>" />
 
             </form>

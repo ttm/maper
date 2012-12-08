@@ -14,7 +14,7 @@ overflow:auto;
          border-left: solid 1px #ccc;
          z-index: 50;
          position: absolute;
-         margin-left:20px;
+         margin-left:120px;
          width:100%;
   }
 
@@ -65,33 +65,132 @@ function initialize() {
     zoom: 10,
     center: new google.maps.LatLng(-23.564298867964755, 313.3961061411132),
     
+    mapTypeControlOptions: {
+        mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.SATELLITE],
+        position: google.maps.ControlPosition.RIGHT_CENTER
+    },
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-//    mapTypeControl: true,
-//    mapTypeControlOptions: {
-//        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-//        position: google.maps.ControlPosition.BOTTOM_CENTER
-//    },
+    mapTypeControl: true,
     disableDefaultUI: true
     
   }
   map = new google.maps.Map(document.getElementById("map_canvas"),
       myOptions);
+  refresh();
+
+google.maps.event.addListener(map, 'click', function(event) {
+refresh();
+        });
+
+
+google.maps.event.addListener(map, 'zoom_changed', function(event) {
+refresh();
+        });
+
+
+
+function placeMarker(location) {
+      var marker = new google.maps.Marker({
+                position: location,
+                      map: map
+                        });
 }
 
-function registraMapa(){
+
+
+}
+
+function refresh(){
+
     center=map.getCenter();
-    lat=center.$a;
-    lng=center.ab;
+    lat=document.getElementById("lat");
+    lng=document.getElementById("lng");
+    lat.innerHTML=center.$a;
+    lng.innerHTML=center.ab;
 
     zoom=map.getZoom();
-    window.location="./registraMapa.php?lat=" + lat + "&lng=" + lng + "&zoom="+zoom;
+    zoom_=document.getElementById("zoom");
+    zoom_.innerHTML=zoom;
+
+    front=map.getBounds();
+    front_=document.getElementById("fronteiras");
+    front_.innerHTML=front;
+
+    oFormObject = document.forms['mapForm'];
+    oFormObject.elements["inLat"].value =center.$a;
+    oFormObject.elements["inLng"].value =center.ab;
+    oFormObject.elements["inZoom"].value =zoom;
+    
+    oFormObject2 = document.forms['mdvform'];
+    oFormObject2.elements["mpv_lat"].value =center.$a;
+    oFormObject2.elements["mpv_lng"].value =center.ab;
+    oFormObject2.elements["mpv_zoom"].value =zoom;
 }
+
+function bootstrap(){
+    center=map.getCenter();
+    lat=document.getElementById("lat");
+    lng=document.getElementById("lng");
+    lat.innerHTML=center.$a;
+    lng.innerHTML=center.ab;
+
+    zoom=map.getZoom();
+    zoom_=document.getElementById("zoom");
+    zoom_.innerHTML=zoom;
+
+    front=map.getBounds();
+    front_=document.getElementById("fronteiras");
+    front_.innerHTML=front;
+
+    oFormObject = document.forms['mapForm'];
+    oFormObject.elements["inLat"].value =center.$a;
+    oFormObject.elements["inLng"].value =center.ab;
+    oFormObject.elements["inZoom"].value =zoom;
+    
+    oFormObject2 = document.forms['mdvform'];
+    oFormObject2.elements["mpv_lat"].value =center.$a;
+    oFormObject2.elements["mpv_lng"].value =center.ab;
+    oFormObject2.elements["mpv_zoom"].value =zoom;
+}
+
+
+function manda(){
+       tipo=map.getMapTypeId();
+       if(tipo=='roadmap'){
+           document.getElementById("mpv_map_type_road").click();
+       }
+       else if(tipo == 'hybrid'){
+           document.getElementById("mpv_map_type_hybrid").click();
+       }
+       else if (tipo == 'satellite'){
+           document.getElementById("mpv_map_type_satellite").click();
+       }
+       document.getElementById('submitBttn').click();
+}
+
 </script>
-<body onload="initialize()">
+<body onload="initialize()" style="overflow:hidden">
+<? $url=plugins_url("maper/"); ?>
+<div id="logo" style="position:absolute;margin:10px 0 0 10px;z-index:150;background: white;opacity:.83">
+    <img src="<? echo $url ?>themefiles/figs/logo.png" style="width:65px;height:130px;">
+</div>
+
+
+<div style="position: absolute;">
+<? 
+$plugindir = dirname( __FILE__ );
+require $plugindir . "/formMdV.php";
+?>
+</div>
   <div id="map_canvas" style="width:100%; height:100%; z-index:1; position:relative; float:left"></div>
-    <form method="post" action="<?=$_SERVER['PHP_SELF'];?>">
-        <input id="continuar" value="Acrescentar conteúdo" name="conteudo" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7" type="submit" />
+    <form id="mapForm" method="post" action="<?=$_SERVER['PHP_SELF'];?>">
+        <input id="inLat" hidden modifiable="0" name="inLat" style="position:absolute;left:5%;bottom:4%;z-index:20;width:500px;opacity:0.7">
+        <input id="inLng" hidden modifiable="0" name="inLng" style="position:absolute;left:5%;bottom:0%;z-index:20;width:500px;opacity:0.7">
+        <input id="inZoom" hidden modifiable="0" name="inZoom" style="position:absolute;left:5%;bottom:5%;z-index:20;width:500px;opacity:0.7">
     </form>
+
+        <input id="continuar" value="Colocar título" name="titulo" style="position:absolute;left:50%;bottom:15%;z-index:20;height:100px;width:200px;opacity:0.7; border-style:groove;" onmouseover="this.style.cursor='default'"  onclick="manda()" type="button"/>
+
   <nav>
   <li>
   <a href="#">0.</a>
@@ -118,6 +217,19 @@ function registraMapa(){
   <a href="#">7.Exportar</a>
 </nav>
 
+<div style="padding:15px;left:140px;top:80px;z-index:80;position:absolute;background:white;">
+Por enquanto, todos os títulos são Mapas de Vista pois o plugin de wordpress só possui um título (imagem) utilizada por todos os mapas. A utilização de títulos diferentes para mapas diferentes incorrerá em modificações no mapa, e deverá ser discutido com outros devs.AAAAAAAa
+</div>
+
+<div style="left:50%;margin-left:-35%;bottom:1%;z-index:60;background:white;position:absolute; padding:15px">
+<b>Centro (lat,log)</b>=<span id='lat'></span>, <span id='lng'></span><br />
+<b>Zoom</b>=<span id='zoom'></span><br />
+<b>Fronteiras</b>=<span id='fronteiras'></span><br />
+</div>
+
+  <div id="transpbox" style="width:100%; height:100%;background-color:#ffffff;opacity:0.4; z-index:10; position: absolute"></div>
 
 </body>
+
+
 </html>

@@ -33,49 +33,62 @@ function my_theme_redirect() {
     $pass=1;
     $plugindir = dirname( __FILE__ );
     $templatefilename = "inicial.php";
-    if(isset($_POST['submit_map'])) // chave para gravar
-    {
-        update_post_meta($_POST['page_id'], '_mapasdevista', $_POST['map']);
-        update_post_meta($_POST['page_id'], '_mapasdeusuario', get_current_user_id());
-    $templatefilename = "inicial.php";
-    }
 
-    if($_POST['apresentacao']){
+    if($_POST['apresentacao']){ // inicial.php sends us here
     $templatefilename = "apresentacao.php";
     }
-    elseif($_POST['colabore']){
+    elseif($_POST['colabore']){  // inicial.php sends us here
     $templatefilename = "colabore.php";
     }
-    elseif($_POST['contrate']){
+    elseif($_POST['contrate']){ // inicial.php sends us here
     $templatefilename = "contrate.php";
     }
-    elseif($_POST['iniciar']){
-    $templatefilename = "oMapa.php";
-    }
 
-    elseif($_GET['meus_mapas']){
+    elseif($_GET['meus_mapas']){ // inicial.php sends us here
     $templatefilename = "meus_mapas.php";
     }
 
-    elseif($_GET['mdv']){
+    elseif($_GET['mdv']){ // inicial.php sends us here
     $templatefilename = "mdv.php";
     }
-    elseif($_GET['funciona']){
+    elseif($_GET['funciona']){ // inicial.php sends us here
     $templatefilename = "funciona.php";
     }
-    elseif($_GET['contato']){
+    elseif($_GET['contato']){ // inicial.php sends us here
     $templatefilename = "contato.php";
     }
 
-    elseif($_POST['fase']=='titulo'){
+    elseif($_POST['iniciar']){ // apresentacao.php sends us here
+    // DAQUI PARTIMOS PARA uso do $_SESSION 
+    // na manutenção dos dados do mapa
+    $templatefilename = "oMapa.php";
+    }
+    // SEMPRE
+    // 1) Atualizar o $_SESSION (da pagina do mapa pra frente)
+    //elseif($_POST['fase']=='titulo' or $_SESSION['step']=='post'){ // Deprecated
+    elseif($_POST['fase']=='titulo' or $_SESSION['step']=='post'){ // Deprecated
         //$templatefilename = "registraMapa.php";
-        $pass=0;
         $_SESSION['inCentro']=$_POST['inCentro'];
         $_SESSION['Lat']=$_POST['inLat'];
         $_SESSION['Lng']=$_POST['inLng'];
         $_SESSION['MdVauto']=1;
         $_SESSION['Zoom']=$_POST['inZoom'];
     }
+
+    // 2) ATUALIZAR O BD (da pagina do mapa pra frente)
+    if(isset($_POST['submit_map'])) // chave para gravar (botao eh sempre acionado por js)
+    {
+        update_post_meta($_POST['page_id'], '_mapasdevista', $_POST['map']);
+        update_post_meta($_POST['page_id'], '_mapasdeusuario', get_current_user_id());
+        if($_POST['fase']=='titulo'){
+            $_SESSION['step']='post';
+            $templatefilename = "titulo.php";
+        }
+        else{
+            $templatefilename = 'post.php';
+        }
+    }
+
     elseif($_GET['page_id']){
         $pass=0;
     }
