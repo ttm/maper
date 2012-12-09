@@ -35,7 +35,7 @@ if(isset($_SESSION['page_id'])){
 else{
     $defaults = array(
             'post_type'             => 'page',
-            'post_author'           => 1,
+            'post_author'           => get_current_user_id(),
             'post_title'    => 'Título da pagina ' . strval(rand(1,100000)),
             'post_status'   => 'publish',
             );
