@@ -60,6 +60,13 @@ transition: all 0.4s linear;
     src="http://maps.googleapis.com/maps/api/js?sensor=false">
 </script>
 <script type="text/javascript">
+var ctrlPressed = false;
+function cacheIt(event) {
+        ctrlPressed = event.ctrlKey;
+}
+document.onkeydown = cacheIt;
+document.onkeyup = cacheIt;
+
 function initialize() {
   var myOptions = {
     zoom: parseFloat(<?=$_SESSION['Zoom'];?>),
@@ -80,17 +87,19 @@ function initialize() {
   refresh();
 
 google.maps.event.addListener(map, 'click', function(event) {
-    placeMarker(event.latLng);
-refresh();
-        });
+    if(ctrlPressed){
+        placeMarker(event.latLng);
+    }
+    refresh();
+});
 
 google.maps.event.addListener(map, 'center_changed', function(event) {
-refresh();
-        });
+    refresh();
+});
 
 google.maps.event.addListener(map, 'zoom_changed', function(event) {
-refresh();
-        });
+    refresh();
+});
 
 
 
