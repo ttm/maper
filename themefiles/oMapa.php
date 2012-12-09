@@ -143,7 +143,6 @@ function manda(){
            document.getElementById("mpv_map_type_satellite").click();
        }
        document.getElementById('fase').value='titulo';
-       if(!document.getElementById('mapname').value){
        document.getElementById('mapname').value='mapa ' + String(Math.floor(Math.random()*1000000));
        document.getElementById('submitBttn').click();
 }
