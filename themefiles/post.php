@@ -90,6 +90,7 @@ function initialize() {
 google.maps.event.addListener(map, 'click', function(event) {
     if(ctrlPressed){
         placeMarker(event.latLng);
+        manda2(event.latLng.$a, event.latLng.ab);
     }
     refresh();
 });
@@ -152,6 +153,23 @@ function refresh(){
     oFormObject2.elements["mpv_zoom"].value =zoom;
 }
 
+function manda2(lat,lng){
+       tipo=map.getMapTypeId();
+       if(tipo=='roadmap'){
+           document.getElementById("mpv_map_type_road").click();
+       }
+       else if(tipo == 'hybrid'){
+           document.getElementById("mpv_map_type_hybrid").click();
+       }
+       else if (tipo == 'satellite'){
+           document.getElementById("mpv_map_type_satellite").click();
+       }
+       document.getElementById('fase').value='postsMarkers';
+       document.getElementById('markerLat').value=lat;
+       document.getElementById('markerLng').value=lng;
+       document.getElementById('submitBttn').click();
+}
+
 function manda(){
        tipo=map.getMapTypeId();
        if(tipo=='roadmap'){
@@ -163,6 +181,7 @@ function manda(){
        else if (tipo == 'satellite'){
            document.getElementById("mpv_map_type_satellite").click();
        }
+       document.getElementById('fase').value='postsMarkers';
        document.getElementById('submitBttn').click();
 }
 </script>
@@ -216,7 +235,7 @@ require $plugindir . "/formMdV.php";
 </nav>
 
 <div style="padding:15px;left:140px;top:80px;z-index:80;position:absolute;background:white;">
-Clique no mapa para colocar pinos. Clique no pino para inserir conteúdo. Arraste o pino para atualizar localização.
+Segure a tecla 'Ctrl' e Clique no mapa para colocar pinos. Clique no pino para inserir conteúdo. Arraste o pino para atualizar localização.
 </div>
 
 <div style="left:50%;margin-left:-35%;bottom:1%;z-index:60;background:white;position:absolute; padding:15px">

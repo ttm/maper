@@ -45,6 +45,8 @@ $page_id = wp_insert_post( $defaults , $wp_error);
            ?>
 
             <input type="hidden" name="original_page_id" value="<?php echo $_GET['page_id']; ?>" />
+            <input type="hidden" name="markerLat" id="markerLat"/>
+            <input type="hidden" name="markerLng" id="markerLng"/>
 
             <h3><?php _e('Map Name', 'mapasdevista'); ?></h3>
             <input type="text" name="map[name]" value="<?php echo $map['name']; ?>">
@@ -366,7 +368,7 @@ wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/
             <?php foreach ($wp_post_types as $type_name => $type) : ?>
 
                 <?php if ($type_name == 'attachment' || $type_name == 'revision' || $type_name == 'nav_menu_item' ) continue; ?>
-                <input type="checkbox" name="map[post_types][]" value="<?php echo $type_name; ?>" <?php if (in_array($type_name, $map['post_types'])) echo 'checked'; ?> > <?php echo $type->label; ?> <br />
+                <input checked type="checkbox" name="map[post_types][]" value="<?php echo $type_name; ?>" <?php if (in_array($type_name, $map['post_types'])) echo 'checked'; ?> > <?php echo $type->label; ?> <br />
 
             <?php endforeach; ?>
 

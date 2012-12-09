@@ -7,12 +7,9 @@
    Version: 0.01-alpha
    Author URI: http://labmacambira.sourceforge.net
  */
-wp_deregister_script('jquery');
 
 // load the local copy of jQuery in the footer
 // or load the Google API copy in the footer
-wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js', false, '1.3.2', true);
-wp_enqueue_script('jquery');
 
 add_action('init', 'init_sessions', 1);                                
 function init_sessions() {                                             
@@ -94,11 +91,29 @@ function my_theme_redirect() {
     {
         update_post_meta($_POST['page_id'], '_mapasdevista', $_POST['map']);
         update_post_meta($_POST['page_id'], '_mapasdeusuario', get_current_user_id());
+        error_log("YYYYYYYEYYYYY7");
         if($_POST['fase']=='titulo'){
             $_SESSION['step']='post';
             $templatefilename = "titulo.php";
         }
+        elseif($_POST['fase']=='postsMarkers' and $_SESSION['step'] == 'post'){
+        error_log("YYYYYYYEYYYYY8");
+            $location = array();
+            $location['lat'] = floatval(sprintf("%f", $_POST['markerLat']));
+            $location['lon'] = floatval(sprintf("%f", $_POST['markerLng']));
+            $defaults = array(
+                    'post_type'             => 'post',
+                    'post_author'           => 1,
+                    'post_title'    => 'Título do post',
+                    'post_status'   => 'publish',
+                    );
+            $post_id = wp_insert_post( $defaults , $wp_error);
+            update_post_meta($post_id, "_mpv_inmap", $_POST['page_id']);
+            update_post_meta($post_id, '_mpv_location', $location);
+            $voide="noni";
+        }
         elseif($_SESSION['step']=='post'){
+        error_log("YYYYYYYEYYYYY6");
             $templatefilename = 'post.php';
             //$_SESSION['step']='filtros'; // desabilitei para ficar loop no post
         }
