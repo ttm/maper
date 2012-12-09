@@ -61,11 +61,12 @@ transition: all 0.4s linear;
 </script>
 <script type="text/javascript">
 var ctrlPressed = false;
-function cacheIt(event) {
+document.onkeydown = function cacheIt(event) {
         ctrlPressed = event.ctrlKey;
-}
-document.onkeydown = cacheIt;
-document.onkeyup = cacheIt;
+};
+document.onkeyup = function cacheIt(event) {
+        ctrlPressed = false;
+};
 
 function initialize() {
   var myOptions = {
@@ -167,7 +168,7 @@ function manda(){
 </script>
 <body onload="initialize()" style="overflow:hidden">
 <? $url=plugins_url("maper/");
-$_SESSION['step']='titulo'; ?>
+?>
 <div id="logo" style="position:absolute;margin:10px 0 0 10px;z-index:150;background: white;opacity:.83">
     <img src="<? echo $url ?>themefiles/figs/logo.png" style="width:65px;height:130px;">
 </div>

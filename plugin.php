@@ -100,7 +100,7 @@ function my_theme_redirect() {
         }
         elseif($_SESSION['step']=='post'){
             $templatefilename = 'post.php';
-            $_SESSION['step']='filtros';
+            //$_SESSION['step']='filtros'; // desabilitei para ficar loop no post
         }
     }
 
