@@ -103,7 +103,7 @@ function my_theme_redirect() {
             $location['lon'] = floatval(sprintf("%f", $_POST['markerLng']));
             $defaults = array(
                     'post_type'             => 'post',
-                    'post_author'           => 1,
+                    'post_author'           => get_current_user_id(),
                     'post_title'    => 'Título do post ' . strval(rand(1,100000)),
                     'post_status'   => 'publish',
                     );

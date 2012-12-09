@@ -49,7 +49,7 @@ $page_id = wp_insert_post( $defaults , $wp_error);
             <input type="hidden" name="markerLng" id="markerLng"/>
 
             <h3><?php _e('Map Name', 'mapasdevista'); ?></h3>
-            <input type="text" name="map[name]" value="<?php echo $map['name']; ?>">
+            <input type="text" id="mapname" name="map[name]" value="<?php echo $map['name']; ?>">
 
             <h3><?php _e('Map API', 'mapasdevista'); ?></h3>
             <ul id="mpv_map_api">
