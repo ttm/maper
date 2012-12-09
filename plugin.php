@@ -104,13 +104,13 @@ function my_theme_redirect() {
             $defaults = array(
                     'post_type'             => 'post',
                     'post_author'           => 1,
-                    'post_title'    => 'Título do post',
+                    'post_title'    => 'Título do post ' . strval(rand(1,100000)),
                     'post_status'   => 'publish',
                     );
             $post_id = wp_insert_post( $defaults , $wp_error);
             update_post_meta($post_id, "_mpv_inmap", $_POST['page_id']);
             update_post_meta($post_id, '_mpv_location', $location);
-            $voide="noni";
+            $templatefilename = 'post.php';
         }
         elseif($_SESSION['step']=='post'){
         error_log("YYYYYYYEYYYYY6");

@@ -36,7 +36,7 @@ else{
     $defaults = array(
             'post_type'             => 'page',
             'post_author'           => 1,
-            'post_title'    => 'Título do post',
+            'post_title'    => 'Título da pagina ' . strval(rand(1,100000)),
             'post_status'   => 'publish',
             );
 $page_id = wp_insert_post( $defaults , $wp_error);
