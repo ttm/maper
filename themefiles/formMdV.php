@@ -4,7 +4,7 @@ function mapasdevista_maps_pageB() {
     ?>
 
 
-    <div class="wrap">
+    <div class="wrap" style="z-index:-20">
         <h2><?php _e('Maps', 'mapasdevista'); ?></h2>
         
         
