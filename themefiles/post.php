@@ -3,6 +3,7 @@
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
 <style type="text/css">
+  .show-admin-bar { display: none; }
   html { height: 100% }
   body { height: 100%; margin: 0; padding: 0 }
   #map { height: 100% }
@@ -69,11 +70,13 @@ transition: all 0.4s linear;
 
 <div style="position: absolute;">
 <? 
+show_admin_bar(false);
+add_filter( 'show_admin_bar', '__return_false' );
 $plugindir = dirname( __FILE__ );
 require $plugindir . "/formMdV.php";
 ?>
 </div>
-  <div id="map" style="width:100%; height:100%; z-index:1; position:relative; float:left"></div>
+  <div id="map" style="width:100%; height:100%; z-index:1; position:relative; float:left; margin-top:-29px"></div>
     <form id="mapForm" method="post" action="<?=$_SERVER['PHP_SELF'];?>">
         <input id="inLat" hidden modifiable="0" name="inLat" style="position:absolute;left:5%;bottom:4%;z-index:20;width:500px;opacity:0.7">
         <input id="inLng" hidden modifiable="0" name="inLng" style="position:absolute;left:5%;bottom:0%;z-index:20;width:500px;opacity:0.7">
@@ -118,33 +121,37 @@ Segure a tecla 'Ctrl' e Clique no mapa para colocar pinos. Clique no pino para i
 <b>Fronteiras</b>=<span id='fronteiras'></span><br />
 </div>
 <? 
-error_log("BBBBB");
-//include( '../mapasdevista/functions.php');
-//include( mapasdevista_get_template('../../plugins/maper/mapasdevista/functions', null, false));
-//include( mapasdevista_get_template('../../plugins/maper/mapasdevista/template/_init-vars', null, false));
-//include( mapasdevista_get_template('../../plugins/maper/mapasdevista/template/_load-js', null, false) );
-error_log("yuaa");
-//include( mapasdevista_get_template('functions', null, false));
-error_log("yu");
 include( mapasdevista_get_template('template/_init-vars', null, false));
-error_log("yi");
 include( mapasdevista_get_template('template/_load-js', null, false) );
-error_log("yp");
-
 include( mapasdevista_get_template('template/_filter-menus', null, false) );
-
 include( mapasdevista_get_template('template/_header', null, false) ); 
-
 include( mapasdevista_get_template('mapasdevista-loop', 'filter', false) );
-
 include( mapasdevista_get_template('mapasdevista-loop', 'bubble', false) );
-
 include( mapasdevista_get_template('template/_filters', null, false) );
-
 include( mapasdevista_get_template('template/_footer', null, false) );
 
 
-error_log("BBBBB2"); ?>
+// ABAIXO PARA ESCRITA NO BALAO DO MARKER
+?>
+<div class="hide">                                                     
+<?php $posts = mapasdevista_get_posts(get_the_ID(), $mapinfo); ?>      
+<?php while($posts->have_posts()): $posts->the_post(); ?>              
+<div id="AAballoon_<?php the_ID(); ?>" class="result clearfix">
+<div class="balloon">
+
+<div class="content">                                          
+<p class="metadata bottom">                                
+BBBBBBBBBBBB<span class="date"><?php the_time( get_option('date_format') ); ?></span>
+</p>                                                       
+<h1 class="bottom"><a class="js-link-to-post" id="balloon-post-link-<?php the_ID(); ?>" href="<?php the_permalink(); ?>" onClick="mapasdevista.linkToPost(this); return false;">o0o0o(AA<?php the_title(); ?>AA)o0o0o</a></h1>         
+<?php mapasdevista_get_template( 'mapasdevista-bubble', get_post_format() ); ?>
+</div>
+</div> 
+</div>      
+<?php endwhile;
+/////////////////// ACABOU DA ESCRITA NO MARKER ?>                                                     
+</div>
+
 <script type="text/javascript">
 var ctrlPressed = false;
 document.onkeydown = function cacheIt(event) {
@@ -275,6 +282,61 @@ function manda(){
 
 
 </body>
+<style type="text/css">
+  .show-admin-bar { display: none; }
+  html { height: 100% }
+  body { height: 100%; margin: 0; padding: 0; color: #000; font-size: 100%; font-family: serif; }
+  #map { height: 100% }
+
+  nav{
+display:table;
+margin: 10px 50px 50px 50px;
+overflow:auto;
+         border-left: solid 1px #ccc;
+         z-index: 50;
+         position: absolute;
+         margin-left:120px;
+         width:100%;
+  }
+
+nav li a,
+    nav:hover li.active a{
+color: #ccc;
+       text-decoration:none;
+padding: 0 10px;
+background: black;
+            font-size: 2em;
+            text-transform:uppercase;
+            font-family: Arial, Verdana, Sans-serif;
+border: solid 1px #ccc;
+        border-width: 1px 1px 1px 30px;
+    }
+
+nav li{
+float:left;
+padding:0;
+        list-style:none;
+}
+
+nav li.active a,
+    nav li a:hover,
+    nav:hover li.active a:hover{
+background: #ccc;
+color:white;
+    }
+
+nav li a{ /* Transition-effects */
+transition: all 0.4s linear;
+            -o-transition: all 0.4s linear;
+            -ms-transition: all 0.4s linear;
+            -moz-transition: all 0.4s linear;
+            -webkit-transition: all 0.4s linear;
+}
+
+
+
+
+</style>
 
 
 </html>
