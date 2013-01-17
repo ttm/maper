@@ -184,7 +184,8 @@ mmap=mapstraction.maps[mapstraction.api];
 google.maps.event.addListener(mmap, 'click', function(event) {
     if(ctrlPressed){
         placeMarker(event.latLng);
-        manda2(event.latLng.$a, event.latLng.ab);
+        //manda2(event.latLng.$a, event.latLng.ab);
+        manda2(event.latLng.Ya, event.latLng.Za);
     }
     refresh();
 });
@@ -225,8 +226,11 @@ function refresh(){
     center=mmap.getCenter();
     lat=document.getElementById("lat");
     lng=document.getElementById("lng");
-    lat.innerHTML=center.$a;
-    lng.innerHTML=center.ab;
+    //lat.innerHTML=center.$a;
+    //lng.innerHTML=center.ab;
+
+    lat.innerHTML=center.Ya;
+    lng.innerHTML=center.Za;
 
     zoom=mmap.getZoom();
     zoom_=document.getElementById("zoom");
@@ -236,15 +240,26 @@ function refresh(){
     front_=document.getElementById("fronteiras");
     front_.innerHTML=front;
 
+    //oFormObject = document.forms['mapForm'];
+    //oFormObject.elements["inLat"].value =center.$a;
+    //oFormObject.elements["inLng"].value =center.ab;
+    //oFormObject.elements["inZoom"].value =zoom;
+    //
+    //oFormObject2 = document.forms['mdvform'];
+    //oFormObject2.elements["mpv_lat"].value =center.$a;
+    //oFormObject2.elements["mpv_lng"].value =center.ab;
+    //oFormObject2.elements["mpv_zoom"].value =zoom;
+
     oFormObject = document.forms['mapForm'];
-    oFormObject.elements["inLat"].value =center.$a;
-    oFormObject.elements["inLng"].value =center.ab;
+    oFormObject.elements["inLat"].value =center.Ya;
+    oFormObject.elements["inLng"].value =center.Za;
     oFormObject.elements["inZoom"].value =zoom;
     
     oFormObject2 = document.forms['mdvform'];
-    oFormObject2.elements["mpv_lat"].value =center.$a;
-    oFormObject2.elements["mpv_lng"].value =center.ab;
+    oFormObject2.elements["mpv_lat"].value =center.Ya;
+    oFormObject2.elements["mpv_lng"].value =center.Za;
     oFormObject2.elements["mpv_zoom"].value =zoom;
+
 }
 
 function manda2(lat,lng){

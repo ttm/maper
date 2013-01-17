@@ -91,13 +91,11 @@ function my_theme_redirect() {
     {
         update_post_meta($_POST['page_id'], '_mapasdevista', $_POST['map']);
         update_post_meta($_POST['page_id'], '_mapasdeusuario', get_current_user_id());
-        error_log("YYYYYYYEYYYYY7");
         if($_POST['fase']=='titulo'){
             $_SESSION['step']='post';
             $templatefilename = "titulo.php";
         }
         elseif($_POST['fase']=='postsMarkers' and $_SESSION['step'] == 'post'){
-        error_log("YYYYYYYEYYYYY8");
             $location = array();
             $location['lat'] = floatval(sprintf("%f", $_POST['markerLat']));
             $location['lon'] = floatval(sprintf("%f", $_POST['markerLng']));
@@ -113,7 +111,6 @@ function my_theme_redirect() {
             $templatefilename = 'post.php';
         }
         elseif($_SESSION['step']=='post'){
-        error_log("YYYYYYYEYYYYY6");
             $templatefilename = 'post.php';
             //$_SESSION['step']='filtros'; // desabilitei para ficar loop no post
         }

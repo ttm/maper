@@ -119,15 +119,27 @@ function refresh(){
     front_=document.getElementById("fronteiras");
     front_.innerHTML=front;
 
+    //oFormObject = document.forms['mapForm'];
+    //oFormObject.elements["inLat"].value =center.$a;
+    //oFormObject.elements["inLng"].value =center.ab;
+    //oFormObject.elements["inZoom"].value =zoom;
+    //
+    //oFormObject2 = document.forms['mdvform'];
+    //oFormObject2.elements["mpv_lat"].value =center.$a;
+    //oFormObject2.elements["mpv_lng"].value =center.ab;
+    //oFormObject2.elements["mpv_zoom"].value =zoom;
+
     oFormObject = document.forms['mapForm'];
-    oFormObject.elements["inLat"].value =center.$a;
-    oFormObject.elements["inLng"].value =center.ab;
+    oFormObject.elements["inLat"].value =center.Ya;
+    oFormObject.elements["inLng"].value =center.Za;
     oFormObject.elements["inZoom"].value =zoom;
     
     oFormObject2 = document.forms['mdvform'];
-    oFormObject2.elements["mpv_lat"].value =center.$a;
-    oFormObject2.elements["mpv_lng"].value =center.ab;
+    oFormObject2.elements["mpv_lat"].value =center.Ya;
+    oFormObject2.elements["mpv_lng"].value =center.Za;
     oFormObject2.elements["mpv_zoom"].value =zoom;
+
+
 }
 
 function bootstrap(){
